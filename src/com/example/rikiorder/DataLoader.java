@@ -1,5 +1,6 @@
 package com.example.rikiorder;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +27,19 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 	}
 	
 	@Override
-	protected List<Pizza> doInBackground(String... arg0) {
-		
+	protected List<Pizza> doInBackground(String... urls) {
+
 		List<Pizza> pizzaList = new ArrayList<Pizza>();
+		String url = urls[0];
 		
 		try
 		{
-			Log.i("fail",arg0[0]);
-			Document doc = Jsoup.connect(arg0[0]).get();
-			Elements divs = doc.getElementsByAttributeValue("id", "tovari");
+			Log.i("fail",url);
+			Document doc = ConnectTo(url);
+			Elements divs = GetPizzaDivisitions(doc);
 			
-			for (Element element : divs) {
+			for (Element element : divs)
+			{
 				for(Element child : element.children())
 				{
 					try
@@ -56,6 +59,17 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 			Log.i("fail",e.toString());
 		}
 		return pizzaList;
+	}
+	
+	private Document ConnectTo(String url) throws IOException
+	{
+		return Jsoup.connect(url).get();
+	}
+	
+	private Elements GetPizzaDivisitions(Document doc)
+	{
+		final String PIZZA_ID = "tovari";		
+		return doc.getElementsByAttributeValue("id", PIZZA_ID);
 	}
 	
 	@Override

@@ -20,11 +20,10 @@ class PizzaView extends FrameLayout
 				getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.pizza_item, this);
 		
-		mName = (TextView) findViewById(R.id.Name);
-		mDescritopn = (TextView) findViewById(R.id.Description);
-		mPrice = (TextView) findViewById(R.id.Price);
-		
-		mImage = (ImageView) findViewById(R.id.Image);	
+		mName		= (TextView) findViewById(R.id.Name);
+		mDescritopn	= (TextView) findViewById(R.id.Description);
+		mPrice		= (TextView) findViewById(R.id.Price);		
+		mImage		= (ImageView) findViewById(R.id.Image);	
 	}
 	
 	public void UpdateFields(Pizza pizza)

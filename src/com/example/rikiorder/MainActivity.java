@@ -22,7 +22,7 @@ public class MainActivity extends Activity implements LoadingListener {
 		setContentView(R.layout.activity_main);
 		
 		DataLoader loader = new DataLoader(this);
-		loader.execute("http://www.rikipizza.ru/");
+		loader.execute(getString(R.string.RIKI_URL_ADDRESS));
 		progressDialog = ProgressDialog.show(this, "Loading", "Please wait");
 	}
 
