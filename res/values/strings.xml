@@ -9,5 +9,6 @@
         <item >medium</item>
         <item >large</item>
     </string-array>
+    <string name="RIKI_URL_ADDRESS">http://www.rikipizza.ru/</string>
 
 </resources>
