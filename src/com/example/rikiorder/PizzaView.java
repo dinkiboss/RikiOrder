@@ -1,5 +1,6 @@
 package com.example.rikiorder;
 
+import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -26,13 +27,29 @@ class PizzaView extends FrameLayout
 		mImage		= (ImageView) findViewById(R.id.Image);	
 	}
 	
-	public void UpdateFields(Pizza pizza)
+	public void UpdateFields(Product pizza)
 	{
-		mName.setText(pizza.mName);
-		mDescritopn.setText(pizza.mDescription);
-		mPrice.setText(pizza.mPrice);
-		mImage.setImageBitmap(pizza.mImage);
+		mName.setText(pizza.GetName());
+		
+		mDescritopn.setText(pizza.GetDescription());
+		
+		String prices = PreparePrices(pizza);		
+		mPrice.setText(prices);
+	
+		mImage.setImageBitmap(pizza.GetImage());
 	}
 	
+	protected String PreparePrices(Product pizza)
+	{
+		List<ProductEntry> priceList = pizza.GetPriceTable();
+		
+		String pricesString = "";
+		for (ProductEntry pizzaEntry : priceList) {
+			pricesString += pizzaEntry;
+		}
+		
+		return pricesString;		
+	}
+		
 
 }

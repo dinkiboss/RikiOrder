@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@layout/pizza_border_ui_v9"
+    android:orientation="horizontal" >
+    
+            <TextView
+                android:id="@+id/CartItemName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="3dp"
+                android:textColor="#cc6632"
+                android:text="Четыре вкуса"/>
+         
+            <TextView
+                android:id="@+id/CartItemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:textColor="#cc6632"
+                android:text="495"/>
+    
+
+</LinearLayout>

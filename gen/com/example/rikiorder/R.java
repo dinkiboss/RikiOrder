@@ -14,25 +14,45 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int call_background=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int order_background=0x7f020002;
     }
     public static final class id {
-        public static final int Description=0x7f080006;
-        public static final int Image=0x7f080008;
-        public static final int Name=0x7f080005;
-        public static final int Price=0x7f080007;
-        public static final int address=0x7f080001;
-        public static final int button1=0x7f080004;
-        public static final int listView1=0x7f080000;
-        public static final int menu_settings=0x7f080009;
-        public static final int phone=0x7f080002;
-        public static final int spinner1=0x7f080003;
+        public static final int CartItemName=0x7f080011;
+        public static final int CartItemPrice=0x7f080012;
+        public static final int Description=0x7f080014;
+        public static final int Image=0x7f080016;
+        public static final int Name=0x7f080013;
+        public static final int Price=0x7f080015;
+        public static final int TableRow01=0x7f080005;
+        public static final int TableRow02=0x7f08000d;
+        public static final int TextView01=0x7f080006;
+        public static final int TextView03=0x7f08000e;
+        public static final int address=0x7f080009;
+        public static final int button1=0x7f080000;
+        public static final int cost=0x7f08000f;
+        public static final int listView1=0x7f080003;
+        public static final int menu_settings=0x7f080018;
+        public static final int name=0x7f080007;
+        public static final int order_button=0x7f080004;
+        public static final int ordered_pizza=0x7f080010;
+        public static final int phone=0x7f08000c;
+        public static final int prepare_order=0x7f080001;
+        public static final int sizes=0x7f080017;
+        public static final int tableRow1=0x7f080008;
+        public static final int tableRow2=0x7f08000a;
+        public static final int textView1=0x7f080002;
+        public static final int textView2=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_order=0x7f030001;
-        public static final int pizza_border_ui=0x7f030002;
-        public static final int pizza_item=0x7f030003;
+        public static final int cart_item=0x7f030002;
+        public static final int pizza_border_ui=0x7f030003;
+        public static final int pizza_border_ui_v9=0x7f030004;
+        public static final int pizza_item=0x7f030005;
+        public static final int pizza_size_dialog=0x7f030006;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
@@ -40,6 +60,9 @@ public final class R {
     public static final class string {
         public static final int RIKI_URL_ADDRESS=0x7f040003;
         public static final int app_name=0x7f040000;
+        public static final int cancel=0x7f040006;
+        public static final int dialog_fire_missiles=0x7f040004;
+        public static final int fire=0x7f040005;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
     }

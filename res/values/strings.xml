@@ -10,5 +10,8 @@
         <item >large</item>
     </string-array>
     <string name="RIKI_URL_ADDRESS">http://www.rikipizza.ru/</string>
+    <string name="dialog_fire_missiles">Удалить из заказа?</string>    
+    <string name="fire">ок</string>
+    <string name="cancel">нет</string>
 
 </resources>

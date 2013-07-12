@@ -1,81 +1,72 @@
 package com.example.rikiorder;
 
 import java.io.InputStream;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.jsoup.nodes.Element;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-enum PizaSize
+
+
+class Pizza implements Product
 {
-	SMALL,
-	MEDIUM,
-	LARGE
-}
-/*
-abstract class Pizza
-{	
+
 	protected String mName;
 	protected String mDescription;
-	protected String mPrice;
 	protected Bitmap mImage;
+	protected List<ProductEntry> mPriceTable = new ArrayList<ProductEntry>();
 	
-	
-	public String GetName() {
-		return mName;
-	}
-
 	public String GetDescription() {
 		return mDescription;
 	}
 
-	public String GetPrices() {
-		return mPrice;
+	public Bitmap GetImage() {
+		return mImage;
 	}	
-}
-*/
-class Pizza
-{
-	public String mName;
-	public String mDescription;
-	public String mPrice;
-	public Bitmap mImage;	
 	
+	public List<ProductEntry> GetPriceTable()
+	{
+		return mPriceTable;
+	}
 	
-	public String GetName() {
+	public String GetName()
+	{
 		return mName;
-	}
-
-	public String GetDescription() {
-		return mDescription;
-	}
-
-	public String GetPrice() {
-		return mPrice;
 	}
 	
 	public Pizza(Element element) throws Exception
-	{
-		ParseTextFields(element);
+	{		
+		mName			= ParseByTag(element, RikiConstants.NAME_FIELD_TAG);		
+		mDescription	= ParseByTag(element, RikiConstants.DESCRIPTION_FIELD_TAG);		
+		String prices	= ParseByTag(element, RikiConstants.PRICE_FIELD_TAG);
+		
+		ParsePriceField(prices);
 		ParseImageField(element);
 	}
 	
-	private void ParseTextFields(Element element) throws Exception
-	{
-		final String NAME_FIELD_TAG			= "h2";
-		final String DESCRIPTION_FIELD_TAG	= "h6";
-		final String PRICE_FIELD_TAG		= "h3";		
-		
-		mName			= ParseField(element, NAME_FIELD_TAG);		
-		mDescription	= ParseField(element, DESCRIPTION_FIELD_TAG);		
-		mPrice			= ParseField(element, PRICE_FIELD_TAG);	
-	}
 	
-	private void ParsePriceField()
-	{
+	private void ParsePriceField(String data)
+	{	
+		//replace all except numbers and spaces
+		String res = data.replaceAll("[^0-9 ]","");
+		//split string by one or more spaces
+		String[] items = res.split("( +)");		
 		
+		int[] values = new int[items.length];
+		
+		for (int i = 0; i < values.length; ++i)
+		{
+			values[i] = Integer.parseInt(items[i]);
+		}
+		
+		for (int i = 0; i < values.length; i+=2)
+		{
+			int size = values[i];
+			int price = values[i+1];
+			mPriceTable.add(new ProductEntry(size, price));
+		}		
 	}
 	
 	private void ParseImageField(Element element) throws Exception
@@ -89,10 +80,10 @@ class Pizza
 	
 	private String GetFullAddress(String url)
 	{
-		return R.string.RIKI_URL_ADDRESS  + url;
+		return RikiConstants.RIKI_URL + url;
 	}
 	
-	private String ParseField(Element element, String tag) throws Exception
+	private String ParseByTag(Element element, String tag) throws Exception
 	{
 		String field = element.getElementsByTag(tag).text();
 		ValidateField(field);
@@ -107,14 +98,6 @@ class Pizza
 		}
 	}
 	
-	
-	@Override
-	public String toString() {
-		return	" Name: " + mName + 
-				" Description: " + mDescription +
-				" Price: " + mPrice;
-	}
-	
 	private Bitmap LoadImage(String url)
 	{
         Bitmap image = null;
@@ -127,68 +110,7 @@ class Pizza
         }
         return image;		
 	}
-
-
 }
-
-/*
-class SelectedPizza extends Pizza
-{
-	protected Pizza mConmponent;
-	PizaSize mPizaSize;
-	
-	int mSmallPizaPrice = 0;
-	int mMedPizzaPrice = 0;
-	int mLargePizzaPrice = 0;
-	
-	
-	public SelectedPizza(Pizza component)
-	{
-		mConmponent = component;
-	}
-	
-	public void SetSize(PizaSize size)
-	{
-		mPizaSize = size;
-	}
-	
-	protected void ParsePrice()
-	{
-		
-	}
-	
-	public int GetPizaPrice()
-	{
-		int price = 0;
-		switch(mPizaSize)
-		{
-		case SMALL:
-			price = mSmallPizaPrice;
-		case MEDIUM:
-			price = mMedPizzaPrice;
-		case LARGE:
-			price = mLargePizzaPrice;
-		}
-
-		return price;
-	}
-	
-	public String GetName() {
-		return mConmponent.mName;
-	}
-
-	public String GetDescription() {
-		return mConmponent.mDescription;
-	}
-
-	public String GetPrices() {
-		return mConmponent.mPrice;
-	}	
-}*/
-
-
-
-
 
 
 

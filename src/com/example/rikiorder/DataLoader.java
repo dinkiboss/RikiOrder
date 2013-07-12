@@ -14,10 +14,10 @@ import android.util.Log;
 
 interface LoadingListener
 {
-	void onLoadingComplite(List<Pizza> pizzaList);
+	void onLoadingComplite(List<Product> pizzaList);
 }
 
-public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
+public class DataLoader extends AsyncTask<String, Void, List<Product>> {
 	
 	LoadingListener listener;
 	
@@ -27,16 +27,16 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 	}
 	
 	@Override
-	protected List<Pizza> doInBackground(String... urls) {
+	protected List<Product> doInBackground(String... urls) {
 
-		List<Pizza> pizzaList = new ArrayList<Pizza>();
+		List<Product> productList = new ArrayList<Product>();
 		String url = urls[0];
 		
 		try
 		{
 			Log.i("fail",url);
 			Document doc = ConnectTo(url);
-			Elements divs = GetPizzaDivisitions(doc);
+			Elements divs = GetPizzaDivisions(doc);	
 			
 			for (Element element : divs)
 			{
@@ -44,7 +44,7 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 				{
 					try
 					{
-						pizzaList.add(new Pizza(child));
+						productList.add(new Pizza(child));
 					}
 					catch(Exception e)
 					{
@@ -58,7 +58,7 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 		{
 			Log.i("fail",e.toString());
 		}
-		return pizzaList;
+		return productList;
 	}
 	
 	private Document ConnectTo(String url) throws IOException
@@ -66,14 +66,13 @@ public class DataLoader extends AsyncTask<String, Void, List<Pizza>> {
 		return Jsoup.connect(url).get();
 	}
 	
-	private Elements GetPizzaDivisitions(Document doc)
-	{
-		final String PIZZA_ID = "tovari";		
-		return doc.getElementsByAttributeValue("id", PIZZA_ID);
+	private Elements GetPizzaDivisions(Document doc)
+	{	
+		return doc.getElementsByAttributeValue("id", RikiConstants.PIZZA_ID);
 	}
 	
 	@Override
-	protected void onPostExecute(List<Pizza> result) {
+	protected void onPostExecute(List<Product> result) {
 		listener.onLoadingComplite(result);
 	}
 

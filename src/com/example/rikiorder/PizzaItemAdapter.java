@@ -7,30 +7,30 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 
-public class PizzaItemAdapter extends ArrayAdapter<Pizza> {
+public class PizzaItemAdapter extends ArrayAdapter<Product> {
 
-	List<Pizza> pizzaList;
+	List<Product> mProductList;
 	
 	public PizzaItemAdapter(Context context, int textViewResourceId,
-			List<Pizza> objects) {
+			List<Product> objects) {
 		super(context, textViewResourceId, objects);
 		
-		pizzaList = objects;
+		mProductList = objects;
 	}	
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		PizzaView view = (PizzaView)convertView;		
-		Pizza pizza = pizzaList.get(position);
+		Product product = mProductList.get(position);
 		
 		if(view == null)
 		{
 			view = new PizzaView(getContext());
 		}
 		
-		view.UpdateFields(pizza);
+		view.UpdateFields(product);
 		return view;
 	}
-
 }
+
